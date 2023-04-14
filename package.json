@@ -1,0 +1,10 @@
+{
+    "name": "css-custom-properties",
+    "version": "1.0.0",
+    "description": "Example project",
+    "main": "main.js",
+    "repository": "https://github.com/guillaumeferber/css-custom-properties.git",
+    "author": "Guillaume Ferber",
+    "license": "MIT",
+    "type": "module"
+}
