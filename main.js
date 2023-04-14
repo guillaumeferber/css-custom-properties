@@ -21,7 +21,7 @@ function generateCssCustomProperties() {
         },
         {
           name: "--box-shadow",
-          initialValue: "0 3px 12px 3px rgba(#484648, 0.12)",
+          initialValue: "0 3px 12px 3px rgba(72, 70, 72, 0.12)",
           inherits: false,
         }
       ];

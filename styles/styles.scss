@@ -26,11 +26,11 @@
         opacity: var(--opacity);
         animation: scaleUp 0.5s ease both;
         animation-delay: 1s;
-        transition: box-shadow 0.15s ease-out, --scale 0.15s ease-out;
+        transition: --box-shadow 0.15s ease-out, --scale 0.15s ease-out;
 
         &:hover {
             --scale: 1.1;
-            box-shadow: 0 1px 15px 3px rgba(#484648, 0.18);
+            --box-shadow: 0 1px 15px 3px rgba(72, 70, 72, 0.18);
         }
     }
 
