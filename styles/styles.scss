@@ -8,69 +8,89 @@
     grid-template-rows: repeat(3, [row] auto);
     grid-gap: 40px;
     width: fit-content;
+    &:has(.active) .menu__item:not(:first-child) {
+        animation: scaleUp 0.5s ease both;
+        animation-delay: .2s;
+        &:hover {
+            & ~ .active {
+                --background: red;
+            }
+        }
+    }
 }
 
 .menu__item {
-    height: 80px;
     width: 80px;
+    height: 80px;
     background: var(--background-color);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--box-shadow);
     cursor: pointer;
-
-    &:not(:first-child) {
-        scale: var(--scale);
-        opacity: var(--opacity);
-        animation: scaleUp 0.5s ease both;
-        animation-delay: 1s;
-        transition: --box-shadow 0.15s ease-out, --scale 0.15s ease-out;
+    scale: var(--scale);
+    opacity: var(--opacity);
+    padding: var(--padding);
+    transform: translate(calc(var(--translate-x)*1px), calc(var(--translate-y) * 1px));
+    &:not(.menu__item-center) {
+        --scale: 0;
+        --opacity: 0;
+        transition:  --translate-y .15s ease-out, --translate-x .15s ease-out;
 
         &:hover {
-            --scale: 1.1;
-            --box-shadow: 0 1px 15px 3px rgba(72, 70, 72, 0.18);
+            --scale: 1.5;
+
         }
     }
-
     &:first-child {
+        --scale: 1;
+        --opacity: 1;
         grid-column: col 2 / span 2;
         grid-row: row 2;
-        scale: var(--scale);
-        opacity: var(--opacity);
-        transition: --opacity 0.15s ease-out, --scale 0.15s ease-out;
-
-
+        transition: --opacity 0.15s ease-out;
+        transform-origin: var(--trans) center;
         &:hover {
-            --scale: 1.1;
+            --padding: "0 0 0 0";
+            --dimension-x: 100;
         }
-
         &:focus,
         &:active,
         &.active {
-            --opacity: 0.6;
+            --opacity: 0.4;
+            transition: --padding .15s ease-out;
         }
     }
 
     &:nth-child(2) {
         grid-column: col 2 / span 2;
         grid-row: row;
+        &:hover {
+            --translate-y: -10;
+        }
     }
 
     &:nth-child(3) {
         grid-column: col 3 / span 2;
         grid-row: row 2;
+        &:hover {
+            --translate-x: 10;
+        }
     }
 
     &:nth-child(4) {
         grid-column: col 1 / span 2;
         grid-row: row 2;
+        &:hover {
+            --translate-x: -10;
+        }
     }
 
     &:nth-child(5) {
         grid-column: col 2 / span 2;
         grid-row: row 3;
+        &:hover {
+            --translate-y: 10;
+        }
     }
 }
 
