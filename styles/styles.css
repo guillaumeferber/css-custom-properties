@@ -16,6 +16,7 @@
 }
 
 .menu__item {
+  position: relative;
   width: 80px;
   height: 80px;
   background-color: var(--background-color);
@@ -28,29 +29,43 @@
   opacity: var(--opacity);
   transform: translate(calc(var(--translate-x) * 1px), calc(var(--translate-y) * 1px));
   background-position: center center;
-  background-size: 100%;
-}
-.menu__item:hover {
-  --scale: 1.1;
-}
-.menu__item:focus, .menu__item:active, .menu__item.active {
-  --opacity: 0.4;
-  --scale: 1.1;
+  background-size: 40%;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 .menu__item:not(:first-child) {
   --scale: 0;
   --opacity: 0;
-  transition: --translate-y 0.15s ease-in-out, --translate-x 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-position 0.15s ease-out;
+}
+.menu__item:not(:first-child) span {
+  position: absolute;
+  top: 100%;
+  opacity: 0;
+  transition: all 0.15s ease;
+  font: 400 14px/1.2 sans-serif;
+}
+.menu__item:not(:first-child):hover {
+  background-position: center 30%;
+}
+.menu__item:not(:first-child):hover span {
+  top: 65%;
+  opacity: 1;
 }
 .menu__item:first-child {
   grid-column: col 2/span 2;
   grid-row: row 2;
-  transition: --opacity 0.15s ease-out, --scale 0.15s ease-out;
-  background-image: url(../assets/icons/hamburger.svg);
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+  background-image: url("../assets/icons/hamburger.svg");
+}
+.menu__item:first-child:focus, .menu__item:first-child:active, .menu__item:first-child.active {
+  --opacity: 0.4;
+  --scale: 1.1;
 }
 .menu__item:nth-child(2) {
   grid-column: col 2/span 2;
   grid-row: row;
+  background-image: url("../assets/icons/plus.svg");
 }
 .menu__item:nth-child(2):hover {
   --translate-y: -10;
@@ -58,6 +73,7 @@
 .menu__item:nth-child(3) {
   grid-column: col 3/span 2;
   grid-row: row 2;
+  background-image: url("../assets/icons/help.svg");
 }
 .menu__item:nth-child(3):hover {
   --translate-x: 10;
@@ -65,6 +81,7 @@
 .menu__item:nth-child(4) {
   grid-column: col 1/span 2;
   grid-row: row 2;
+  background-image: url("../assets/icons/download.svg");
 }
 .menu__item:nth-child(4):hover {
   --translate-x: -10;
@@ -72,6 +89,7 @@
 .menu__item:nth-child(5) {
   grid-column: col 2/span 2;
   grid-row: row 3;
+  background-image: url("../assets/icons/library.svg");
 }
 .menu__item:nth-child(5):hover {
   --translate-y: 10;
@@ -86,22 +104,4 @@
     --scale: 1;
     --opacity: 1;
   }
-}
-/* -----
-SVG Icons - svgicons.sparkk.fr
------ */
-.svg-icon {
-  width: 1em;
-  height: 1em;
-}
-
-.svg-icon path,
-.svg-icon polygon,
-.svg-icon rect {
-  fill: #4691f6;
-}
-
-.svg-icon circle {
-  stroke: #4691f6;
-  stroke-width: 1;
 }/*# sourceMappingURL=styles.css.map */

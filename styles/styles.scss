@@ -16,6 +16,7 @@
 }
 
 .menu__item {
+    position: relative;
     width: 80px;
     height: 80px;
     background-color: var(--background-color);
@@ -28,35 +29,51 @@
     opacity: var(--opacity);
     transform: translate(calc(var(--translate-x)*1px), calc(var(--translate-y) * 1px));
     background-position: center center;
-    background-size: 100%;
-
-    &:hover {
-        --scale: 1.1;
-    }
-
-    &:focus,
-    &:active,
-    &.active {
-        --opacity: 0.4;
-        --scale: 1.1;
-    }
+    background-size: 40%;
+    background-repeat: no-repeat;
+    overflow: hidden;
 
     &:not(:first-child) {
         --scale: 0;
         --opacity: 0;
-        transition: --translate-y .15s ease-in-out, --translate-x .15s ease-in-out;
+        transition: transform .15s ease-in-out, background-position .15s ease-out;
+
+        span {
+            position: absolute;
+            top: 100%;
+            opacity: 0;
+            transition: all .15s ease;
+            font: 400 14px/1.2 sans-serif;
+        }
+
+        &:hover {
+            background-position: center 30%;
+
+            span {
+                top: 65%;
+                opacity: 1;
+            }
+        }
     }
 
     &:first-child {
         grid-column: col 2 / span 2;
         grid-row: row 2;
-        transition: --opacity 0.15s ease-out, --scale .15s ease-out;
-        background-image: url(../assets/icons/hamburger.svg);
+        transition: opacity .15s ease-out, transform .15s ease-out;
+        background-image: url('../assets/icons/hamburger.svg');
+
+        &:focus,
+        &:active,
+        &.active {
+            --opacity: 0.4;
+            --scale: 1.1;
+        }
     }
 
     &:nth-child(2) {
         grid-column: col 2 / span 2;
         grid-row: row;
+        background-image: url('../assets/icons/plus.svg');
 
         &:hover {
             --translate-y: -10;
@@ -66,6 +83,7 @@
     &:nth-child(3) {
         grid-column: col 3 / span 2;
         grid-row: row 2;
+        background-image: url('../assets/icons/help.svg');
 
         &:hover {
             --translate-x: 10;
@@ -75,6 +93,7 @@
     &:nth-child(4) {
         grid-column: col 1 / span 2;
         grid-row: row 2;
+        background-image: url('../assets/icons/download.svg');
 
         &:hover {
             --translate-x: -10;
@@ -84,6 +103,7 @@
     &:nth-child(5) {
         grid-column: col 2 / span 2;
         grid-row: row 3;
+        background-image: url('../assets/icons/library.svg');
 
         &:hover {
             --translate-y: 10;
@@ -101,24 +121,4 @@
         --scale: 1;
         --opacity: 1;
     }
-}
-
-/* -----
-SVG Icons - svgicons.sparkk.fr
------ */
-
-.svg-icon {
-    width: 1em;
-    height: 1em;
-}
-
-.svg-icon path,
-.svg-icon polygon,
-.svg-icon rect {
-    fill: #4691f6;
-}
-
-.svg-icon circle {
-    stroke: #4691f6;
-    stroke-width: 1;
 }
