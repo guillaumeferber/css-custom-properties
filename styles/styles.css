@@ -11,17 +11,14 @@
   width: fit-content;
 }
 .menu:has(.active) .menu__item:not(:first-child) {
-  animation: scaleUp 0.5s ease both;
-  animation-delay: 0.2s;
-}
-.menu:has(.active) .menu__item:not(:first-child):hover ~ .active {
-  --background: red;
+  animation: scaleUp 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
+  animation-delay: 0.15s;
 }
 
 .menu__item {
   width: 80px;
   height: 80px;
-  background: var(--background-color);
+  background-color: var(--background-color);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -29,32 +26,27 @@
   cursor: pointer;
   scale: var(--scale);
   opacity: var(--opacity);
-  padding: var(--padding);
   transform: translate(calc(var(--translate-x) * 1px), calc(var(--translate-y) * 1px));
+  background-position: center center;
+  background-size: 100%;
 }
-.menu__item:not(.menu__item-center) {
+.menu__item:hover {
+  --scale: 1.1;
+}
+.menu__item:focus, .menu__item:active, .menu__item.active {
+  --opacity: 0.4;
+  --scale: 1.1;
+}
+.menu__item:not(:first-child) {
   --scale: 0;
   --opacity: 0;
-  transition: --translate-y 0.15s ease-out, --translate-x 0.15s ease-out;
-}
-.menu__item:not(.menu__item-center):hover {
-  --scale: 1.5;
+  transition: --translate-y 0.15s ease-in-out, --translate-x 0.15s ease-in-out;
 }
 .menu__item:first-child {
-  --scale: 1;
-  --opacity: 1;
   grid-column: col 2/span 2;
   grid-row: row 2;
-  transition: --opacity 0.15s ease-out;
-  transform-origin: var(--trans) center;
-}
-.menu__item:first-child:hover {
-  --padding: "0 0 0 0";
-  --dimension-x: 100;
-}
-.menu__item:first-child:focus, .menu__item:first-child:active, .menu__item:first-child.active {
-  --opacity: 0.4;
-  transition: --padding 0.15s ease-out;
+  transition: --opacity 0.15s ease-out, --scale 0.15s ease-out;
+  background-image: url(../assets/icons/hamburger.svg);
 }
 .menu__item:nth-child(2) {
   grid-column: col 2/span 2;
@@ -94,4 +86,22 @@
     --scale: 1;
     --opacity: 1;
   }
+}
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
 }/*# sourceMappingURL=styles.css.map */
